@@ -1,0 +1,13 @@
+.nav-link li{
+    display: inline;
+    margin-right: 20px;
+}
+.nav-link li a{
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+.logo{
+    padding: 10px;
+    background-image: linear-gradient(to right, #9258f9, #c253db, #dc58c0, #e767aa, #e8799b);
+}

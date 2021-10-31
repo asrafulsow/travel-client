@@ -1,0 +1,20 @@
+.newsletter-footer input{
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+.newsletter-footer button{
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+.icon i{
+    margin-right: 10px;
+    font-size: 40px;
+    cursor: pointer;
+}
+.footer-area p{
+    color: lightgray;
+}
