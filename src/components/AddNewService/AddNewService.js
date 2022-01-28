@@ -8,9 +8,10 @@ const AddNewService = () => {
     const imgRef = useRef();
     const priceRef = useRef();
     const loactionRef = useRef();
-    const reviewRef = useRef();
-    const PeopleRef = useRef();
-    const timeRef = useRef()
+    const timeRef = useRef();
+    const dateRef = useRef();
+    const postedRef = useRef();
+    const rattingRef = useRef();
 
     const handleAddService = e =>{
         const title = nameRef.current.value;
@@ -18,10 +19,11 @@ const AddNewService = () => {
         const img = imgRef.current.value;
         const price = priceRef.current.value;
         const location= loactionRef.current.value;
-        const review = reviewRef.current.value;
-        const people = PeopleRef.current.value;
         const time = timeRef.current.value;
-        const newUsers = {title,des,img,price,location,review,people,time};
+        const date = dateRef.current.value;
+        const posted = postedRef.current.value;
+        const ratting = rattingRef.current.value;
+        const newUsers = {title,des,img,price,location,time,date,posted,ratting};
         fetch('https://evil-goosebumps-76567.herokuapp.com/services',{
             method: 'POST',
             headers:{
@@ -44,9 +46,10 @@ const AddNewService = () => {
                         <input type="text" ref={imgRef} placeholder="img url"/>
                         <input type="number" ref={priceRef} placeholder="price"/>
                         <input type="text" ref={loactionRef} placeholder="location"/>
-                        <input type="text" ref={reviewRef} placeholder="Review"/>
-                        <input type="text" ref={PeopleRef} placeholder="people"/>
                         <input type="text" ref={timeRef} placeholder="time"/>
+                        <input type="text" ref={dateRef} placeholder="date"/>
+                        <input type="text" ref={postedRef} placeholder="posted"/>
+                        <input type="text" ref={rattingRef} placeholder="ratting"/>
                         <input type="submit" value="Submit" />
                     </form>
             </div>

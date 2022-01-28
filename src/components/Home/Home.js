@@ -1,5 +1,5 @@
 import React from 'react';
-import { Carousel, Spinner } from 'react-bootstrap';
+import { Carousel, Pagination, Spinner } from 'react-bootstrap';
 import img1 from '../../picture/maldiv.jpg';
 import img2 from '../../picture/lake.jpg';
 import img3 from '../../picture/sea.jpg';
@@ -17,15 +17,25 @@ const Home = () => {
 
     const [services, setServices] = useState([]);
 
-    useEffect( () =>{
+    useEffect(() => {
         fetch('https://evil-goosebumps-76567.herokuapp.com/services')
-        .then(res => res.json())
-        .then(data => setServices(data))
-    } ,[])
+            .then(res => res.json())
+            .then(data => setServices(data))
+    }, [])
 
-    const {isLoading} = useAuth();
-    if(isLoading){
+    const { isLoading } = useAuth();
+    if (isLoading) {
         return <Spinner className="text-center spinner" animation="border" variant="info" />
+    }
+
+    let active = 1;
+    let items = [];
+    for (let number = 1; number <= 5; number++) {
+        items.push(
+            <Pagination.Item key={number} active={number === active}>
+                {number}
+            </Pagination.Item>,
+        );
     }
 
     return (
@@ -34,39 +44,39 @@ const Home = () => {
                 <Carousel>
                     <Carousel.Item>
                         <img
-                        className="d-block w-100"
-                        src= {img1}
-                        alt="First slide"
+                            className="d-block w-100"
+                            src={img1}
+                            alt="First slide"
                         />
                         <Carousel.Caption>
-                        <h1>TRAVELLING AROUND THE WORLD</h1>
-                        <p>Do not follow where the path may lead. Go instead where there is no path and leave a trail</p>
-                        <button>See More</button>
+                            <h1>TRAVELLING AROUND THE WORLD</h1>
+                            <p>Do not follow where the path may lead. Go instead where there is no path and leave a trail</p>
+                            <button>See More</button>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
                         <img
-                        className="d-block w-100"
-                        src= {img2}
-                        alt="Second slide"
+                            className="d-block w-100"
+                            src={img2}
+                            alt="Second slide"
                         />
                         <Carousel.Caption>
-                        <h1>Life is a journey, not a destination</h1>
-                        <p>I am not the same, having seen the moon shine on the other side of the world</p>
-                        <button>See More</button>
+                            <h1>Life is a journey, not a destination</h1>
+                            <p>I am not the same, having seen the moon shine on the other side of the world</p>
+                            <button>See More</button>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
                         <img
-                        className="d-block w-100"
-                        src={img3}
-                        alt="Third slide"
+                            className="d-block w-100"
+                            src={img3}
+                            alt="Third slide"
                         />
 
                         <Carousel.Caption>
-                        <h1>Wherever you go becomes a part of you somehow</h1>
-                        <p>There’s a sunrise and a sunset every single day, and they’re absolutely free. Don’t miss so many of them</p>
-                        <button>See More</button>
+                            <h1>Wherever you go becomes a part of you somehow</h1>
+                            <p>There’s a sunrise and a sunset every single day, and they’re absolutely free. Don’t miss so many of them</p>
+                            <button>See More</button>
                         </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>
@@ -76,49 +86,55 @@ const Home = () => {
             <div className="services-area p-5 container">
                 <div className="services-content text-center">
                     <p>EXPLORE GREATE PLACE</p>
-                    <h1>POPULAR PACKAGES</h1>
-                    <p>Our packages are very cheap and</p>
+                    <h1 className='mb-5'>Latest from the Blog</h1>
                 </div>
                 <div className="allservices">
                     <div className="row">
                         {
                             services.map(service => <Service
-                            key ={service._id}
-                            service = {service}
+                                key={service._id}
+                                service={service}
                             ></Service>)
                         }
                     </div>
                 </div>
             </div>
 
+
+
+            <div>
+                <Pagination style={{justifyContent: 'center'}} size="lg">{items}</Pagination>
+            </div>
+
+
             {/* our tour gallary area */}
             <div className="tour-gallary">
                 <div className="container p-5">
-                <div className="row">
-                    <div className="col-md-5">
-                        <p className="text-danger fw-bold">OUR TOUR GALLERY</p>
-                        <hr className="hr" />
-                        <h2 className="fw-bold fs-1">BEST TRAVELER'S SHARED PHOTOS</h2>
-                        <p>The origin of the word "travel" is most likely lost to history. The term "travel" may originate from the Old French word travail, which means 'work'.[2] According to the Merriam Webster dictionary, the first known use of the word travel was in the 14th century. It also states that the word comes from Middle English travailen, travelen (which means to torment, labor, strive, journey) and earlier from Old French travailler (which means to work strenuously, toil).</p>
-                        <div className="tp-gallary mt-5">
-                            <img style={{width:"100%"}} src={img2} alt="" />
-                        </div>
-                    </div>
-                    <div className="col-md-7">
-                        <div className="row">
-                            <div className="col-md-6">
-                                <img style={{width:"100%"}} src={img5} alt="" />
-                            </div>
-                            <div className="col-md-6">
-                                <img style={{width:"100%"}} src={img6} alt="" />
-                            </div>
-                            <div className="full-img mt-4">
-                            <img style={{width:'100%'}} src={img4} alt="" />
+                    <div className="row">
+                        <div className="col-md-5">
+                            <p className="text-danger fw-bold">OUR TOUR GALLERY</p>
+                            <hr className="hr" />
+                            <h2 className="fw-bold fs-1">BEST TRAVELER'S SHARED PHOTOS</h2>
+                            <p>The origin of the word "travel" is most likely lost to history. The term "travel" may originate from the Old French word travail, which means 'work'.[2] According to the Merriam Webster dictionary, the first known use of the word travel was in the 14th century. It also states that the word comes from Middle English travailen, travelen (which means to torment, labor, strive, journey) and earlier from Old French travailler (which means to work strenuously, toil).</p>
+                            <div className="tp-gallary mt-5">
+                                <img style={{ width: "100%" }} src={img2} alt="" />
                             </div>
                         </div>
-                        
+                        <div className="col-md-7">
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <img style={{ width: "100%" }} src={img5} alt="" />
+                                </div>
+                                <div className="col-md-6">
+                                    <img style={{ width: "100%" }} src={img6} alt="" />
+                                </div>
+                                <div className="full-img mt-4">
+                                    <img style={{ width: '100%' }} src={img4} alt="" />
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
             {/* about us area */}
@@ -127,7 +143,7 @@ const Home = () => {
                     <div className="row">
                         <div className="col-md-5">
                             <div className="about-us-img">
-                                <img style={{width:'100%', marginRight: '10px'}} src={img7} alt="" />
+                                <img style={{ width: '100%', marginRight: '10px' }} src={img7} alt="" />
                             </div>
                         </div>
                         <div className="col-md-7">
@@ -147,7 +163,7 @@ const Home = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>   
+                        </div>
                     </div>
                 </div>
             </div>

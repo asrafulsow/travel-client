@@ -32,39 +32,7 @@ const MyOrder = () => {
     }
     return (
         <div className="p-5">
-            <h1 className="fst-italic text-center mb-5 text-info">My Order</h1>
-            {
-                user.email?
-                users.map( user => 
-                    <div key={user._id}>
-                        <div className="container">
-                        <table className="table table-success table-striped">
-                            <thead>
-                                <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Address</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Delete</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                <th scope="row"></th>
-                                <td>{user.name}</td>
-                                <td>{user.email}</td>
-                                <td>{user.address}</td>
-                                <td>{user.price}</td>
-                                <td><button onClick={() => handleDeleteUser(user._id)}>X</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        </div>
-                    </div>
-                )
-                :<div className="confirm-ord">Please LogIn And Add Order</div>
-            }
+            
         </div>
     );
 };

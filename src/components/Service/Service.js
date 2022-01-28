@@ -10,19 +10,8 @@ const Service = ({service}) => {
             <div className="services-single mb-5">
                 <img style={{width: '100%'}} src={img} alt="" />
                 <p className="text-info fw-bold mt-3">{location}</p>
-                <h2>{title}</h2>
-                <p>{des}</p>
-                <div className="row">
-                    <div className="col-md-6">
-                        <p className="fw-bold">People: {people}</p>
-                        <p className="fw-bold">Price: {price}</p>
-                    </div>
-                    <div className="col-md-6">
-                        <p className="fw-bold">Review: ({review} rev)</p>
-                        <p className="fw-bold">Time: {time}</p>
-                    </div>
-                </div>
-                <Link to={`/booking/${_id}`}><button className="btn btn-primary">Buy Now</button></Link>
+                <h3 className='mb-4'>{title}</h3>
+                <Link to={`/booking/${_id}`}><button className="btn btn-primary">Read More {'>>'}</button></Link>
             </div>
         </div>
     );

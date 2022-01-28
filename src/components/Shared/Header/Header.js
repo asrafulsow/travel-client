@@ -22,9 +22,9 @@ const Header = () => {
                     <Navbar.Collapse className="justify-content-end">
                         <ul className="nav-link">
                             <li><NavLink activeStyle ={activeStyle} to="/home">Home</NavLink></li>
-                            <li><NavLink activeStyle ={activeStyle} to ="/myOrder">My Order</NavLink></li>
+                            <li><NavLink activeStyle ={activeStyle} to ="/dashBord">Dashbord</NavLink></li>
                             <li><NavLink activeStyle ={activeStyle} to="/addNewService">Add A New Service</NavLink></li>
-                            <li><NavLink activeStyle ={activeStyle} to ="/manageAllOrder">Manage All Order</NavLink></li>
+                            <li><NavLink activeStyle ={activeStyle} to ="/manageAllBlog">Manage All Blog</NavLink></li>
                             {
                                 user.email ?<li><NavLink onClick={logOut} activeStyle ={activeStyle} to ="/login">Logout</NavLink></li>:
                                 <li><NavLink activeStyle ={activeStyle} to ="/login">Login</NavLink></li>

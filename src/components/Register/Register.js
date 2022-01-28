@@ -1,7 +1,7 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './Register.css'
 import regestration from '../../picture/regester.svg'
-import { Link } from 'react-router-dom';
+import { Link,useHistory } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 
 const Register = () => {
@@ -9,6 +9,32 @@ const Register = () => {
     const handleGoogleLogind = () =>{
         signInUsingGoogle()
     }
+
+    const {user,registerUser,isLoading,authError} = useAuth();
+    const [loginData, setLoginData] = useState({})
+    const history = useHistory();
+
+    const handleOnBlur = e =>{
+        const field = e.target.name;
+        const value = e.target.value;
+        const newLoginData = {...loginData};
+        newLoginData[field] = value;
+        setLoginData(newLoginData);
+        console.log(newLoginData)
+    }
+
+    const handleLoginSubmit = e =>{
+        if(loginData.password !== loginData.password2){
+            alert("your password didnt mathch")
+            return
+        }
+        registerUser(loginData.email, loginData.password,loginData.name,history)
+        e.preventDefault()
+
+    }
+
+
+
     return (
         <div>
             <h3 className="text-center mt-5">Please Resister Form fill up</h3>
@@ -21,21 +47,21 @@ const Register = () => {
                     <div className="regestration-area">
                         <div class="mb-3">
                             <label className="mb-2" htmlFor="">Frist name</label>
-                            <input type="text" class="form-control" placeholder="First name" aria-label="First name"/>
-                        </div>
-                        <div class="mb-3">
-                            <label className="mb-2" htmlFor="">Last name</label>
-                            <input type="text" class="form-control" placeholder="Last name" aria-label="Last name"/>
+                            <input name="name" onBlur={handleOnBlur} type="text" class="form-control" placeholder="First name" aria-label="First name"/>
                         </div>
                         <div class="mb-3">
                             <label className="mb-2" htmlFor="">Email</label>
-                            <input type="email" class="form-control" placeholder="Your email" aria-label="Email"/>
+                            <input name="email" onBlur={handleOnBlur} type="email" class="form-control" placeholder="Your email" aria-label="Email"/>
                         </div>
                         <div class="mb-3">
                             <label className="mb-2" htmlFor="">Password</label>
-                            <input type="password" class="form-control" placeholder="Your Password" aria-label="Password"/>
+                            <input name="password" onBlur={handleOnBlur} type="password" class="form-control" placeholder="Your Password" aria-label="Password"/>
                         </div>
-                        <button className='mb-3 btn-lg' type="submit">Submit</button><br />
+                        <div class="mb-3">
+                            <label className="mb-2" htmlFor="">Re-Password</label>
+                            <input name="password2" onBlur={handleOnBlur} type="password" class="form-control" placeholder="Your Password" aria-label="Password"/>
+                        </div>
+                        <button onClick={handleLoginSubmit} className='mb-3 btn-lg' type="submit">Regester</button><br />
                         <button onClick={handleGoogleLogind} className="btn-lg">Sign Up Google</button>
                         <p>Already have an account? <Link to ="/login">Login</Link></p>
                     </div>
